@@ -5,13 +5,23 @@ function getComputerChoice() {
         'Paper'
     ];
     var randomChoice = Math.floor(Math.random()*Choices.length);
-    return randomChoice;
+    var chosen;
+    if (randomChoice == 0) {
+        chosen = 'Scissors'
+    }
+    else if (randomChoice == 1) {
+        chosen = 'Rock'
+    }
+    else if (randomChoice == 2) {
+        chosen = 'Paper'
+    }
+    return chosen;
 }
 
 
-function playRound(playerSelection, computerSelection) {
+function playRound(playerSelection) {
     getComputerChoice()
-    for (choice in Choices) {
+    let computerSelection = getComputerChoice;
         if (playerSelection == 'Scissors') {
             if (computerSelection == 'Paper') {
                 return "You win! Paper beats scissors!"
@@ -45,17 +55,13 @@ function playRound(playerSelection, computerSelection) {
                 return "Tie! Rock + Rock are too evenly matched!"
             }    
         }
-    }}
-
-
-let playerSelection = prompt('What do you throw?')
-const computerSelection = getComputerChoice();
-console.log(playRound(playerSelection, computerSelection));
-
-
-function game() {
-    for (let i = 0; i < 5; i++) { 
-        getComputerChoice()
-        playRound(playerSelection, computerSelection)
     }
-}
+
+
+let playerSelection = document.getElementsByClassName("choices").addEventListener("click", );
+const computerSelection = getComputerChoice();
+//console.log(playRound(playerSelection, computerSelection
+console.log(playerSelection, computerSelection);
+
+
+
