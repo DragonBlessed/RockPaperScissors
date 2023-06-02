@@ -25,14 +25,14 @@ function playRound(playerSelection, computerSelection, playerPoints, computerPoi
       if (computerSelection === 'Paper') {
         playerPoints++;
         return {
-          message: "You win! Paper beats scissors!",
+          message: "You win! Scissors beats Paper!",
           playerPoints: playerPoints,
           computerPoints: computerPoints
         };
       } else if (computerSelection === 'Rock') {
         computerPoints++;
         return {
-          message: "You lose! Rock beats scissors!",
+          message: "You lose! Scissors loses to Rock!",
           playerPoints: playerPoints,
           computerPoints: computerPoints
         };
@@ -47,7 +47,7 @@ function playRound(playerSelection, computerSelection, playerPoints, computerPoi
       if (computerSelection === 'Scissors') {
         computerPoints++;
         return {
-          message: "You lose! Scissors beats paper!",
+          message: "You lose! Paper loses to Scissors!",
           playerPoints: playerPoints,
           computerPoints: computerPoints
         };
@@ -76,7 +76,7 @@ function playRound(playerSelection, computerSelection, playerPoints, computerPoi
       } else if (computerSelection === 'Paper') {
         computerPoints++;
         return {
-          message: "You lose! Paper beats rock!",
+          message: "You lose! Rock loses to Paper!",
           playerPoints: playerPoints,
           computerPoints: computerPoints
         };
@@ -109,12 +109,17 @@ buttons.forEach((button) => {
         displayScore(playerPoints, computerPoints);
         if (playerPoints === 5 || computerPoints === 5) {
             gameOver = true;
-            endGame();
+            if (playerPoints > computerPoints) {
+              winGame();
+            }
+            else {
+              loseGame();
+            }
             buttons.forEach((btn) => {
               btn.removeEventListener('click');
             
             
-        });
+            });
     }
     }
 });
@@ -127,13 +132,27 @@ function displayResult(result) {
 
 function displayScore(playerPoints, computerPoints) {
     var scoreContainer = document.getElementById('score');
-    scoreContainer.textContent = "The score is now " + computerPoints + " - " + playerPoints + "!";
+    scoreContainer.textContent = "The score is now " + playerPoints + " - " + computerPoints + "!";
   }
 
-  function endGame() {
+  function winGame() {
     const h1 = document.createElement("h1");
     const ending = document.createTextNode("GAME OVER!");
+    const lineBreak = document.createElement("br");
+    const result = document.createTextNode("YOU WIN!");
     h1.appendChild(ending);
+    h1.appendChild(lineBreak);
+    h1.appendChild(result);
+    document.getElementById("endgame").appendChild(h1);
+  }
+  function loseGame() {
+    const h1 = document.createElement("h1");
+    const ending = document.createTextNode("GAME OVER!");
+    const lineBreak = document.createElement("br");
+    const result = document.createTextNode("YOU LOSE!");
+    h1.appendChild(ending);
+    h1.appendChild(lineBreak);
+    h1.appendChild(result);
     document.getElementById("endgame").appendChild(h1);
   }
 
